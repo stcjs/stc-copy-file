@@ -26,5 +26,5 @@ stccopyfile: {
 ##dest 可以为字符串或者function:
 * 1.当dest为字符串时,新路径targetPath为path.join(this.options.dest, this.file.path);
 * 2.当dest为function时，新路径targetPath为function的返回值
-注：targetPath会经过stc-plugin getResolvePath方法处理
+* 注：targetPath会经过stc-plugin getResolvePath方法处理
 
