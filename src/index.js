@@ -10,12 +10,7 @@ export default class CopyFilePlugin extends Plugin {
    * run
    */
   async run(){
-  }
-  /**
-   * update
-   */
-  update(data){
-    var targetPath;
+    let targetPath;
     if(!this.options.dest) {
       this.fatal('StcCopyFile plugin must have dest config');
       return;
@@ -29,7 +24,18 @@ export default class CopyFilePlugin extends Plugin {
     }else if(isString(this.options.dest)) {
       targetPath = path.join(this.options.dest, this.file.path);
     }
-    this.file.path = targetPath;
+    if(this.file.hasAst()){
+      this.addFile(targetPath, await this.getAst());
+    }else {
+      this.addFile(targetPath, await this.getContent('utf8'));
+    }
+  }
+  /**
+   * update
+   */
+  update(data){
+
+
   }
   /**
    * use cluster
