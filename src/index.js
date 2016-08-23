@@ -25,7 +25,9 @@ export default class CopyFilePlugin extends Plugin {
       targetPath = path.join(this.options.dest, this.file.path);
     }
     if(this.file.hasAst()){
-      return this.addFile(targetPath, await this.getAst());
+      let ast = await this.getAst();
+      ast =  extend([], ast);
+      return this.addFile(targetPath, ast);
     }else {
       return this.addFile(targetPath, await this.getContent('utf8'));
     }
